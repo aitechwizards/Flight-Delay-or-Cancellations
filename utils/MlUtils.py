@@ -13,7 +13,7 @@ class MlUtils:
         This Method will load the data CSV through pandas
         :rtype: object
         """
-        dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow)
+        dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow,  encoding ='utf-8')
         self.sample_count = dfFlight.shape[0]
         return pd.read_csv(fileloc, low_memory=False, nrows=numRow)
 
