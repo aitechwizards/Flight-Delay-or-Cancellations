@@ -8,12 +8,16 @@ class MlUtils:
     def __init__(self):
         self.sample_count = 0
 
-    def load_csv(self, fileloc, numRow):
+    def load_csv(self, fileloc, numRow=None):
         """
         This Method will load the data CSV through pandas
         :rtype: object
         """
-        dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow,  encoding ='utf-8')
+        if  numRow  is None:
+            dfFlight = pd.read_csv(fileloc, low_memory=False, encoding ='utf-8')
+        else:
+            dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow,  encoding ='utf-8')
+
         self.sample_count = dfFlight.shape[0]
         return pd.read_csv(fileloc, low_memory=False, nrows=numRow)
 
@@ -35,12 +39,12 @@ class MlUtils:
         #     print(type(dfMissing))
         #     print(dfMissing.columns.T)
         #     print(dfMissing.dtypes)
-        dfMissing.columns = ['Feature', 'Missing_Count']
+        dfMissing.columns = ['FEATURE', 'COUNT_OF_MISSING']
         #     print(type(dfMissing))
         #     print(dfMissing.columns)
         #     print(dfMissing.dtypes)
-        dfMissing["Missing_%"] = dfMissing["Missing_Count"].map(lambda x: self.Missing_Count(x))
-        print(dfMissing)
+        dfMissing["COUNT_OF_MISSING_%"] = dfMissing["COUNT_OF_MISSING"].map(lambda x: self.Missing_Count(x, ))
+        print(dfMissing.set_index('FEATURE'))
         t1 = dt.now()
         print(t1 - t0)
 
