@@ -13,10 +13,10 @@ class MlUtils:
         This Method will load the data CSV through pandas
         :rtype: object
         """
-        if  numRow  is None:
-            dfFlight = pd.read_csv(fileloc, low_memory=False, encoding ='utf-8')
+        if numRow is None:
+            dfFlight = pd.read_csv(fileloc, low_memory=False, encoding='utf-8')
         else:
-            dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow,  encoding ='utf-8')
+            dfFlight = pd.read_csv(fileloc, low_memory=False, nrows=numRow, encoding='utf-8')
 
         self.sample_count = dfFlight.shape[0]
         return pd.read_csv(fileloc, low_memory=False, nrows=numRow)
@@ -27,7 +27,6 @@ class MlUtils:
         """
         # print(count)
         return (int(count) / self.sample_count) * 100
-
 
     def missingPercent(self, dfFlight):
         """
@@ -118,3 +117,11 @@ def concat_date_time_TaxiOut(rawrow):
         else:
             print("FLIGHT_DATE : {} ".format(rawrow['FLIGHT_DATE']))
             return rawrow['FLIGHT_DATE'] + pd.DateOffset(1)
+
+
+from sklearn.ensemble import RandomForestClassifier
+
+clf = RandomForestClassifier()
+feature_ls = ['YEAR', 'MONTH', 'DAY', 'DAY_OF_WEEK', 'AIRLINE', 'ORIGIN_AIRPORT',
+              'DESTINATION_AIRPORT', 'DEPARTURE_DELAY', 'TAXI_OUT', 'WHEELS_OFF', 'SCHEDULED_TIME',
+              'ELAPSED_TIME', 'AIR_TIME', 'DISTANCE', 'WHEELS_ON', 'TAXI_IN', 'DIVERTED', 'CANCELLED', 'FLIGHT_DELAY' ]
