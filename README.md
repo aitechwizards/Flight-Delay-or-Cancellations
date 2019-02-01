@@ -1,4 +1,4 @@
-## Flights Delay Cancellations Prediction
+## Flights Delay Predication
 ---
 This a Data Science Project. It will help us to predict aircart dealy or cancellation. 
 # Getting Started
